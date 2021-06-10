@@ -19,6 +19,12 @@
 		#menu_profile .caret{
 			margin-top: 8px;
 		}
+
+
+		.form-submit{
+			display: inline-block;
+		}
+
 	</style>
 </head>	
 <body>
@@ -35,8 +41,8 @@
 
 			<ul class="nav navbar-nav">
 				<li><a href="{{ route('welcome') }}"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
-				<li><a href="{{ route('cart.index') }}"><span class="glyphicon glyphicon-th-list"></span> Catalogo</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a></li>
+				<li><a href="{{ route('cart.index') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a></li>
+				<li><a href="{{ route('cart.create') }}"><span class="glyphicon glyphicon-th-list"></span> Agregar al Carrito</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right"  id="menu_profile">
@@ -67,6 +73,12 @@
 </body>
 <script type="text/javascript" src="{{ asset('plugins/jquery-3.3.1-dist/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+<script>
+	//Componente Tooltip.js de bootstrap
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
 </html>
 
 

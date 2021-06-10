@@ -14,7 +14,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('cart');
     }
 
     /**
@@ -24,7 +24,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        //
+        return view('product-add');
     }
 
     /**
@@ -35,6 +35,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         Cart::add(array(
             'id' => $request->id?$request->id:'1', // inique row ID
             'name' => $request->name?$request->name:'example',
@@ -42,11 +43,11 @@ class CartController extends Controller
             'quantity' => $request->quantity?$request->quantity:1,
             'attributes' => array(
                 'color' => $request->color?$request->color:'green',
-                'size' => $request->size?$request->size:'Big',
+                'size' => $request->size?$request->size:'big',
             )
         ));
 
-        return back();
+        return back();/**/
     }
 
     /**
@@ -66,9 +67,13 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($cart)
     {
-        //
+        $item = Cart::get($cart);
+
+        //dd($item->attributes->size);
+
+        return view('product-edit', [ 'item' => $item]);
     }
 
     /**
@@ -78,9 +83,22 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $cart)
     {
-        //
+
+        //$item = Cart::get($cart); //dd($item);
+        Cart::update($cart, array(
+        'name' => $request->name,
+        'price' =>$request->price,
+        'attributes' => array(
+            'color' => $request->color,
+            'size' => $request->size
+        ),
+        'quantity' => $request->quantity,
+        ));
+
+
+        return back();
     }
 
     /**
@@ -93,5 +111,14 @@ class CartController extends Controller
     {
         Cart::remove($cart);
         return back();
+    }
+
+    public function clear(){
+
+       Cart::clear();
+
+       return back();
+       //Cart::session($userId)->clear();
+
     }
 }

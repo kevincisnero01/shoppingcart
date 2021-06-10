@@ -16,8 +16,6 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-Route::get('home', function(){
-	return view('home');
-})->name('home');
-
 Route::resource('/cart', 'CartController');
+
+Route::get('/cart.clear','CartController@clear')->name('cart.clear');
