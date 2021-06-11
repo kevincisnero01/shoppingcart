@@ -41,6 +41,7 @@
 
 			<ul class="nav navbar-nav">
 				<li><a href="{{ route('welcome') }}"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
+				<li><a href="{{ route('catalog') }}"><span class="glyphicon glyphicon-list"></span> Catalogo</a></li>
 				<li><a href="{{ route('cart.index') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a></li>
 				<li><a href="{{ route('cart.create') }}"><span class="glyphicon glyphicon-th-list"></span> Agregar al Carrito</a></li>
 			</ul>

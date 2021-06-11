@@ -16,6 +16,8 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-Route::resource('/cart', 'CartController');
+Route::post('/cart','CartController@index')->name('cart.index');
 
-Route::get('/cart.clear','CartController@clear')->name('cart.clear');
+Route::post('/cart/create','CartController@create')->name('cart.create');
+
+Route::get('catalog','ProductController@index')->name('catalog');
