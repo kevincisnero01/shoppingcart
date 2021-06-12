@@ -1,0 +1,29 @@
+#menu{
+	border-radius: 0px !important; 
+}
+
+#menu_profile a{
+	width: 180px;
+	display: inline-block;
+	position: relative;
+}
+
+#menu_profile .caret{
+	margin-top: 8px;
+}
+
+
+.form-submit{
+	display: inline-block;
+}
+
+#boxImg{
+	display: inline-block;
+    height: 350px;
+    padding: 4px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

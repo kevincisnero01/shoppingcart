@@ -10,7 +10,7 @@
 	  <small class="form-text text-muted">¿Que cantidad desea sumar o restar a la actual?</small>
 	</div>
 	<hr>
-	<form method="POST" action="{{route('cart.update', ['cart' => $item->id]) }}">
+	<form method="POST" action="{{route('carts.update', ['id' => $item->id]) }}">
 	  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	  <input type="hidden" name="_method" value="PUT">
 

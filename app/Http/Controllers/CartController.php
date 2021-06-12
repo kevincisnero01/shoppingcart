@@ -4,123 +4,77 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cart;
+use App\Product;
+use App\Shoppingcart;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('cart');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('product-add');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //dd($request->all());
+        //dd($request);
+        $product = Product::find($request->product_id);
+
         Cart::add(array(
-            'id' => $request->id?$request->id:'1', // inique row ID
-            'name' => $request->name?$request->name:'example',
-            'price' =>$request->price?$request->price:20.20,
-            'quantity' => $request->quantity?$request->quantity:1,
+            'id' => $product->id, 
+            'price' => $product->price,
+            'quantity' => $request->quantity,
+            'name' => $product->name,
             'attributes' => array(
-                'color' => $request->color?$request->color:'green',
-                'size' => $request->size?$request->size:'big',
+                'image' => $product->image,
             )
         ));
 
         return back();/**/
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+       $item = Product::find($id);
+        //dd($item);
+
+        return view('product-show', ['item' => $item]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($cart)
+
+    public function edit($id)
     {
-        $item = Cart::get($cart);
-
-        //dd($item->attributes->size);
-
-        return view('product-edit', [ 'item' => $item]);
+        $item = Cart::get($id);
+        return view('cart-edit', ['item' => $item]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $cart)
+    public function update(Request $request, $id)
     {
 
-        //$item = Cart::get($cart); //dd($item);
-        Cart::update($cart, array(
-        'name' => $request->name,
-        'price' =>$request->price,
-        'attributes' => array(
-            'color' => $request->color,
-            'size' => $request->size
-        ),
+        $item = Cart::get($id); 
+        //echo $id; dd($request->all());
+        
+        Cart::update($id, array(
         'quantity' => $request->quantity,
         ));
 
-
-        return back();
+        return redirect()->route('carts.index');/**/
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($cart)
+
+    public function destroy($id)
     {
-        Cart::remove($cart);
+        Cart::remove($id);
         return back();
     }
 
     public function clear(){
 
        Cart::clear();
-
-       return back();
-       //Cart::session($userId)->clear();
-
+       return redirect()->route('catalogs.index');
     }
 
-    
+
 }

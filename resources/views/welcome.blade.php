@@ -12,8 +12,9 @@
   </p>
   <p>Paquete: "darryldecode/laravelshoppingcart" </p>
   <ul>
-  	<li><spand class="glyphicon glyphicon-ok"></spand> Sesiones</li>
-  	<li><spand class="glyphicon glyphicon-remove"></spand> Base de datos</li>
+  	<li><spand class="glyphicon glyphicon-ok"></spand> Guardar carrito Sesiones v1</li>
+    <li><spand class="glyphicon glyphicon-ok"></spand> Guardar carrito Sesiones v2 + Catalogo de productos en BD</li>
+  	<li><spand class="glyphicon glyphicon-remove"></spand> Guardar carrito Base de datos</li>
   </ul>
 </div>
 

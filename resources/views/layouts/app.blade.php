@@ -4,28 +4,8 @@
 <head>
 	<meta charset="utf8">
 	<title>{{ config('app.name') }}</title>
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
-	<style>
-		#menu{
-			border-radius: 0px !important; 
-		}
-
-		#menu_profile a{
-			width: 180px;
-			display: inline-block;
-			position: relative;
-		}
-
-		#menu_profile .caret{
-			margin-top: 8px;
-		}
-
-
-		.form-submit{
-			display: inline-block;
-		}
-
-	</style>
 </head>	
 <body>
 	<div class="container-fluid">
@@ -41,9 +21,9 @@
 
 			<ul class="nav navbar-nav">
 				<li><a href="{{ route('welcome') }}"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
-				<li><a href="{{ route('catalog') }}"><span class="glyphicon glyphicon-list"></span> Catalogo</a></li>
-				<li><a href="{{ route('cart.index') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a></li>
-				<li><a href="{{ route('cart.create') }}"><span class="glyphicon glyphicon-th-list"></span> Agregar al Carrito</a></li>
+				<li><a href="{{ route('catalogs.index') }}"><span class="glyphicon glyphicon-list"></span> Catalogo</a></li>
+				<li><a href="{{ route('carts.index') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a></li>
+				<!--<li><a href="{{ route('carts.index') }}"><span class="glyphicon glyphicon-th-list"></span> Agregar al Carrito</a></li>-->
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right"  id="menu_profile">

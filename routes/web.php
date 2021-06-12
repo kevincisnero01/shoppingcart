@@ -16,8 +16,19 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-Route::post('/cart','CartController@index')->name('cart.index');
 
-Route::post('/cart/create','CartController@create')->name('cart.create');
+Route::get('carts','CartController@index')->name('carts.index');
 
-Route::get('catalog','ProductController@index')->name('catalog');
+Route::post('carts','CartController@store')->name('carts.store');
+
+Route::get('carts/{id}','CartController@show')->name('carts.show');
+
+Route::get('carts/{id}/edit','CartController@edit')->name('carts.edit');
+
+Route::put('carts/{id}','CartController@update')->name('carts.update');
+
+Route::delete('carts/{id}','CartController@destroy')->name('carts.destroy');
+
+Route::get('carts-clear','CartController@clear')->name('carts.clear');
+
+Route::get('catalogs','ProductController@index')->name('catalogs.index');
