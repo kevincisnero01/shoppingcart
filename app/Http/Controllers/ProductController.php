@@ -12,10 +12,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $products = Product::all();
-        return view('catalog',['products' => $products]);
+        $count = $products->count();
+        //dd($count);
+        return view('products-index',['products' => $products, 'count' => $count]);
     }
 
     /**
@@ -82,5 +86,11 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function catalog_index()
+    {
+        $products = Product::all();
+        return view('catalog',['products' => $products]);
     }
 }
