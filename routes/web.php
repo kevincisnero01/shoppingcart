@@ -34,6 +34,14 @@ Route::get('carts-clear','CartController@clear')->name('carts.clear');
 
 Route::get('products','ProductController@index')->name('products.index');
 
+Route::get('products/create','ProductController@create')->name('products.create');
+
+Route::post('products','ProductController@store')->name('products.store');
+
 Route::get('products/{id}/edit','ProductController@edit')->name('products.edit');
+
+Route::put('products/{id}','ProductController@update')->name('products.update');
+
+Route::delete('products/{id}','ProductController@destroy')->name('products.destroy');
 
 Route::get('catalogs','ProductController@catalog_index')->name('catalogs.index');

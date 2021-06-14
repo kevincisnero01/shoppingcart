@@ -10,7 +10,7 @@
 				</div><!--col-->
 				<div class="col-md-6 text-right">
 					<div class="btn-group  btn-group-custom">
-						<a href="#" class="btn btn-default">
+						<a href="{{ route('products.create') }}" class="btn btn-default">
 							<span class="glyphicon glyphicon-floppy-disk"></span> Registro
 						</a>
 						<a href="#" class="btn btn-default">
@@ -44,9 +44,14 @@
 						<a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-primary">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</a>
-						<a href="#" class="btn btn-danger">
-							<span class="glyphicon glyphicon-trash"></span>
-						</a>
+
+						<form method="POST" action="{{ route('products.destroy',['id' => $product->id]) }}" class="form-submit">
+				          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+				          <input type="hidden" name="_method" value="DELETE">
+
+				          <button type="submit" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Eliminar"></button>
+				    	</form>
+
 					</td>
 				</tr>
 				@endforeach

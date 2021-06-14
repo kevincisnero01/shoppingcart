@@ -12,7 +12,7 @@ class CartController extends Controller
 
     public function index()
     {
-        return view('cart');
+        return view('carts-index');
     }
 
 
@@ -40,14 +40,14 @@ class CartController extends Controller
        $item = Product::find($id);
         //dd($item);
 
-        return view('product-show', ['item' => $item]);
+        return view('carts-show', ['item' => $item]);
     }
 
 
     public function edit($id)
     {
         $item = Cart::get($id);
-        return view('cart-edit', ['item' => $item]);
+        return view('carts-edit', ['item' => $item]);
     }
 
     public function update(Request $request, $id)

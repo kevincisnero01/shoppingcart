@@ -24,7 +24,6 @@
 				<li><a href="{{ route('products.index') }}"><span class="glyphicon glyphicon-th"></span> Productos</a></li>
 				<li><a href="{{ route('catalogs.index') }}"><span class="glyphicon glyphicon-list"></span> Catalogo</a></li>
 				<li><a href="{{ route('carts.index') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a></li>
-				<!--<li><a href="{{ route('carts.index') }}"><span class="glyphicon glyphicon-th-list"></span> Agregar al Carrito</a></li>-->
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right"  id="menu_profile">
