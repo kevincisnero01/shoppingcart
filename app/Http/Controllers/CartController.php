@@ -17,7 +17,7 @@ class CartController extends Controller
         ->with('user','product')
         ->get();
         //dd($cart);
-        
+
         return view('carts-index', ['cart' => $cart]);
     }
 
@@ -52,33 +52,36 @@ class CartController extends Controller
 
     public function edit($id)
     {
-        $item = Cart::get($id);
+        $item = Cart::find($id);
         return view('carts-edit', ['item' => $item]);
     }
 
     public function update(Request $request, $id)
     {
 
-        $item = Cart::get($id); 
-        //echo $id; dd($request->all());
-        
-        Cart::update($id, array(
-        'quantity' => $request->quantity,
-        ));
+        $cart = Cart::find($id); 
+        //dd($request->all());
 
+        $cart->quantity = $request->quantity;
+        $cart->save();
+    
         return redirect()->route('carts.index');/**/
     }
 
 
     public function destroy($id)
     {
-        Cart::remove($id);
+        $cart = Cart::find($id);
+        $cart->delete();
+
         return back();
     }
 
     public function clear(){
 
-       Cart::clear();
+       $carts = Cart::where('user_id',$this->user_test);
+       $carts->delete();
+
        return redirect()->route('catalogs.index');
     }
 
