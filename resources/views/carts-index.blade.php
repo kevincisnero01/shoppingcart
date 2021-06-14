@@ -17,7 +17,7 @@
         @foreach ($cart as $item)
         <tr>
             <th scope="row">{{$item->id}}</th>
-            <td>{{$item->name}}</td>
+            <td>{{$item->product->name}}</td>
             <td>{{$item->price}}</td>
             <td>{{$item->quantity}}</td>
              <th scope="row">

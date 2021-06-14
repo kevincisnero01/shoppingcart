@@ -31,6 +31,7 @@
         
         <form method="POST" action="{{ route('carts.store', ['product_id' => $product->id ]) }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="product_id" value="{{ $product->id }}">
 
           <div class="input-group">
             <input type="number" class="form-control" name="quantity">
