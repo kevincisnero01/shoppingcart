@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
-@if (!Cart::isEmpty())
+@empty (!$cart)
 <table class="table">
     <thead>
         <tr>            
@@ -10,22 +10,16 @@
             <th scope="col">Nombre</th>
             <th scope="col">Precio</th>
             <th scope="col">Cantidad</th>
-            <th scope="col">Atributos</th>
-            <th sc ope="col">Accion</th>
+            <th sc ope="col">Opciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Cart::getContent() as $item)
+        @foreach ($cart as $item)
         <tr>
             <th scope="row">{{$item->id}}</th>
             <td>{{$item->name}}</td>
             <td>{{$item->price}}</td>
             <td>{{$item->quantity}}</td>
-            <td>
-                @foreach ($item->attributes as $key => $attribute)
-                {{$key}}: {{$attribute}}.
-                @endforeach
-            </td>
              <th scope="row">
 		    	<form method="POST" action="{{route('carts.destroy',['id' => $item->id])}}" class="form-submit">
 		          <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -40,31 +34,14 @@
     </tbody>
 </table>
 
-<table class="table">
-  <thead>
-            <tr>
-                <th sc ope="col">Items</th>
-                <th sc ope="col">Sub total</th>
-                <th scope="col">Total</th>
-             </tr>
-  </thead>
-  <tbody>
-              <tr>
-                  <th scope="row">{{Cart::getTotalQuantity()}}</th>
-                  <th scope="row">{{Cart::getSubTotal()}}</th>
-                  <th scope="row">{{Cart::getTotal()}}</th>
-               </tr>
-  </tbody>
-</table>
 <a class="btn btn-default" href="{{ route('carts.clear') }}">Limpiar Todo</a>
 @else 
 <div class="alert alert-warning text-center" role="alert">
     <h3 class="">No se encontraron productos agregados al carrito. <br>
     <small>Para agregar uno debe dirigirse al <strong>"Catalogo"</strong> <a href="{{ route('catalogs.index') }}">(Aqui)</a></small></h3>
 </div>
-    
 
-@endif
+@endempty
 
 </div>
 </div><!-- row-->

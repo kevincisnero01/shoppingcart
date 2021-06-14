@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Cart;
 use App\Product;
-use App\Shoppingcart;
+use App\Cart;
 
 class CartController extends Controller
 {
 
     public function index()
     {
-        return view('carts-index');
+        $cart = Cart::where('user_id',1)
+        ->get();
+        //dd($cart);
+        return view('carts-index', ['cart' => $cart]);
     }
 
 

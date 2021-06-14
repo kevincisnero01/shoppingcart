@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Cart;
 
 class ProductController extends Controller
 {
@@ -69,7 +70,9 @@ class ProductController extends Controller
 
     public function catalog_index()
     {
+        $cart = Cart::where('user_id',1)->get();
         $products = Product::all();
-        return view('catalog',['products' => $products]);
+        //dd($cart);
+        return view('catalog',['products' => $products,'cart' => $cart]);
     }
 }

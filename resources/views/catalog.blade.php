@@ -14,9 +14,9 @@
   <span class="label label-default">Electrodomesticos</span>
   </p>
 
-  @if( count(Cart::getContent()) )
+  @empty(!$cart)
     <a href="{{ route('carts.index') }}" class="btn btn-primary btn-lg">Ver Carrito de Compras</a>
-  @endif
+  @endempty
 </div>
 
 <div class="row">
