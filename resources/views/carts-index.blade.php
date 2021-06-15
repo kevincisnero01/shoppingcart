@@ -20,7 +20,7 @@
 @php $i = 0; @endphp        
 @foreach ($cart as $item)
 <tr>
-  <th scope="row">{{$item->id}}</th>
+  <th scope="row">{{ $i+1 }}</th>
   <td>{{$item->product->name}}</td>
   <td>{{$item->price}}</td>
   <td>{{$item->quantity}}</td>
@@ -49,8 +49,17 @@
     </tfoot>
 </table>
 
-<a class="btn btn-default" href="{{ route('carts.clear') }}" onclick="return confirm('Estas seguro que deseas eliminar todos los items actuales del carrito')" >Limpiar Todo</a>
+    <form  method="POST" action="{{route('orders.store')}}" class="form-submit">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="cart" value="{{ $cart }}">
+        <input type="hidden" name="totalPrices" value="{{ $totalPrices }}">
+
+        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar Carrito</button>
+    </form>
+
+    <a class="btn btn-default" href="{{ route('carts.clear') }}" onclick="return confirm('Estas seguro que deseas eliminar todos los items actuales del carrito')" ><span class="glyphicon glyphicon-erase"></span> Limpiar Carrito</a>
 @else 
+
 <div class="alert alert-warning text-center" role="alert">
     <h3 class="">No se encontraron productos agregados al carrito. <br>
     <small>Para agregar uno debe dirigirse al <strong>"Catalogo"</strong> <a href="{{ route('catalogs.index') }}">(Aqui)</a></small></h3>
