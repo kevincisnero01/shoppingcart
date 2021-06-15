@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Product;
 use App\Cart;
 use App\User;
+use App\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -13,12 +14,24 @@ class CartController extends Controller
 
     public function index()
     {
-        $cart = Cart::where('user_id',$this->user_test)
+        $cart = Cart::where('user_id', $this->user_test)
         ->with('user','product')
         ->get();
-        //dd($cart);
 
-        return view('carts-index', ['cart' => $cart]);
+        $subtotales = Cart::Select(DB::raw("SUM(price*quantity) AS subtotal"))
+        ->groupBy('id')
+        ->pluck('subtotal');
+        //dd($subtotales);
+        
+        $totalItems = $cart->sum('quantity');
+        $totalPrices = $subtotales->sum();
+
+        return view('carts-index', [
+            'cart' => $cart,
+            'subtotales' => $subtotales,
+            'totalItems' => $totalItems,
+            'totalPrices' => $totalPrices
+        ]);
     }
 
 
@@ -36,7 +49,6 @@ class CartController extends Controller
             'quantity' => $datos->quantity,
         ]);
 
-        //return redirect()->route('carts.index');
         return back();
     }
 
@@ -84,6 +96,5 @@ class CartController extends Controller
 
        return redirect()->route('catalogs.index');
     }
-
 
 }
