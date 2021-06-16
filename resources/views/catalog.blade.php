@@ -14,9 +14,9 @@
   <span class="label label-default">Electrodomesticos</span>
   </p>
 
-  @empty(!$cart)
-    <a href="{{ route('carts.index') }}" class="btn btn-primary btn-lg">Ver Carrito de Compras</a>
-  @endempty
+  @if($cart->count() > 0)
+    <a href="{{ route('carts.index') }}" class="btn btn-primary btn-lg">Ver Carrito de Compras <span class="glyphicon glyphicon-shopping-cart"></span></a>
+  @endif
 </div>
 
 <div class="row">

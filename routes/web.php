@@ -51,3 +51,11 @@ Route::get('carts-clear','CartController@clear')->name('carts.clear');
 /*----- ORDERS -----*/
 
 Route::post('orders','OrderController@store')->name('orders.store');
+
+Route::get('orders','OrderController@index')->name('orders.index');
+
+Route::get('orders/{id}','OrderController@show')->name('orders.show');
+
+Route::get('orders/{id}/edit','OrderController@edit')->name('orders.edit');
+
+Route::put('orders/{id}','OrderController@update')->name('orders.update');
