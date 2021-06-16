@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    protected $table = "shoppingcarts";
+    protected $table = "carts";
 
     protected $primaryKey ="id";
 

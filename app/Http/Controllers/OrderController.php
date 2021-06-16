@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\User;
 use App\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{   
+    public $user_test = 1;
+
     public function index()
     {
         //
@@ -37,17 +35,28 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $datos = $request;
-        $user = User::find(1);
+        $cart = Cart::where('user_id',$this->user_test)->get();
         $date = '2021-06-15';
-        $payment_method = "transferencia";
-        //dd($datos);
+        $method = "transferencia";
+        $status = "pendiente";
+        //dd($request->all());
+
 
         $order = Order::create([
-            'user_id' => $user->id,
+            'user_id' => $this->user_test,
+            'quantity' => $datos->totalItems,
             'total' => $datos->totalPrices,
-            'payment_method' => $payment_method,
+            'method' => $method,
+            'status' => $status,
             'date' => $date,
         ]);
+        //dd($order->products());
+
+        foreach ($cart as $item) {
+           $order->products()->attach([$item->product_id => ['quantity' => $item->quantity,'price' => $item->price ]]);
+           $item->delete();
+            //echo "'product_id' $item->product_id, 'quantity'  $item->quantity,'price'  $item->price <br>";
+        }
 
         return back();
     }

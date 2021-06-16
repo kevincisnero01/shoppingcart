@@ -2,7 +2,6 @@
 @section('content')
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
-
 @if(count($cart) > 0)
 <table class="table">
     
@@ -51,7 +50,7 @@
 
     <form  method="POST" action="{{route('orders.store')}}" class="form-submit">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="cart" value="{{ $cart }}">
+        <input type="hidden" name="totalItems" value="{{ $totalItems }}">
         <input type="hidden" name="totalPrices" value="{{ $totalPrices }}">
 
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar Carrito</button>

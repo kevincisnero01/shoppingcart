@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Order;
 use App\Cart;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,6 +24,10 @@ class Product extends Model
 
     public function cart(){
         return $this->hasMany(Cart::class);
+    }
+
+    public function orders(){
+        return $this->belongsToMany(Order::class)->withTimestamps();
     }
 
 }

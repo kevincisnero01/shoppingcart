@@ -51,4 +51,3 @@ Route::get('carts-clear','CartController@clear')->name('carts.clear');
 /*----- ORDERS -----*/
 
 Route::post('orders','OrderController@store')->name('orders.store');
-
